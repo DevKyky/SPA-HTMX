@@ -1,0 +1,52 @@
+<div id="response-div">
+
+    <div class="docs-section">
+        <h6 class="docs-header">Contact</h6>
+        <p>
+            Pour cette page, une entité <code>Contact</code> a été créée contenant uniquement un champ <code>message</code> ainsi
+            qu'un formulaire (<code>Form</code>) <code>ContactForm</code> avec un champ textarea et un bouton submit.
+        </p>
+        <div class="docs-example">
+                <pre><code class="prettyprint">$builder
+    ->add('message', TextareaType::class, [
+        'label' => 'Message',
+        'attr' => [
+            'placeholder' => 'Your message',
+            'rows' => 5,
+            'class' => 'u-full-width'
+        ]
+    ])
+
+    ->add('submitButton', SubmitType::class, [
+        'label' => 'Send',
+        'attr' => [
+            'class' => 'button button-primary',
+            'hx-post' => $options['action'],
+            'hx-target' => '#response-div'
+        ]
+    ])
+;</code></pre>
+        </div>
+
+        <p>
+            La fonction <code>buildForm</code> (<code>ContactForm</code>) a dans ses paramètres <code>$options</code>
+            ce qui permet de passer l'URL à partir du Controller (<code>Controller\SpaController.php</code>).
+        </p>
+        <div class="docs-example">
+                <pre><code class="prettyprint">$form = $this->createForm(ContactType::class, $contact, [
+    'action' => $this->generateUrl('spa_contact')
+]);</code></pre>
+        </div>
+
+        {{ form_start(contactForm) }}
+
+        <label for="">Message</label>
+        {{ form_widget(contactForm.message) }}
+
+        {{ form_widget(contactForm.submitButton) }}
+
+        {{ form_end(contactForm) }}
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>

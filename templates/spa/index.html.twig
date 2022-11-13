@@ -1,17 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}{% endblock %}
-
 {% block body %}
     <div id="response-div">
 
         <div class="docs-section">
-            <h6 class="docs-header">Lorem ipsum dolor sit amet.</h6>
+            <h6 class="docs-header">Home page</h6>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, aspernatur cumque
-                dolor ducimus eius eveniet ex facilis incidunt itaque, magnam maiores nam necessitatibus
-                odit possimus repudiandae voluptas.
+                Ce projet est un exemple d'utilisation de <a href="https://htmx.org/">HTMX</a> dans une SPA avec Symfony.
+            </p>
+            <p>
+                La barre de navigation se trouve dans le fichier <code>templates\menu\_nav.html.twig</code>
+                et utilise <strong>HTMX</strong> pour naviguer entre les pages sans recharger le site.
+            </p>
+            <p>
+                Pour exemple, HTMX permet en "trois lignes" d'accéder à la page features sans rechargement en utilisant ces trois attributs :
+            </p>
+            <div class="docs-example">
+                <pre><code class="prettyprint">&lt;a
+    href="#"
+    hx-target="#response-div"
+    hx-get="&#123;&#123; path('spa_features') &#125;&#125;"
+    hx-swap="outerHTML"&gt;
+    Features
+&lt;/a&gt;
+</code></pre>
+            </div>
+            <p>
+                Le premier attribut est <code>hx-target</code> permet de cibler un élément. Dans ce cas-ci,
+                l'élément ciblé est une <code>div</code> dont l'<code>id</code> est <code>response-div</code>.
+            </p>
+            <p>
+                L'attribut <code>hx-swap</code> indique la méthode (qui par défaut est innerHTML) pour échanger le contenu.
+                Ici, c'est <code>outerHTML</code> qui est utilisé, ce qui signifie que le contenu et le conteneur seront remplacés
+                par le contenu du template utilisé (<code>templates\spa\features</code>).
+            </p>
+            <p>
+                Le dernier attribut, <code>hx-get</code> indique le type de requête utilisé. <code>Get</code> est ici utilisé en spécifiant
+                l'URL de la page ciblée.
             </p>
         </div>
     </div>
 {% endblock %}
+
+{% block title %}{{ parent() }}{% endblock %}

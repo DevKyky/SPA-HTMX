@@ -16,11 +16,11 @@
             </li>
 
             <li class="navbar-item">
-                <a href="#" class="navbar-link">Features</a>
+                <a href="#" hx-target="#response-div" hx-get="{{ path('spa_features') }}" hx-swap="outerHTML" class="navbar-link">Features</a>
             </li>
 
             <li class="navbar-item">
-                <a href="#" class="navbar-link">Contact</a>
+                <a href="#" hx-target="#response-div" hx-get="{{ path('spa_contact') }}" hx-swap="outerHTML" class="navbar-link">Contact</a>
             </li>
         </ul>
     </div>
